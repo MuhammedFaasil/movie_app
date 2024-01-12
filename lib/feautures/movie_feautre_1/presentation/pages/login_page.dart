@@ -4,6 +4,7 @@ import 'package:movie_app_with_clean/core/constants/authentication/login_constan
 import 'package:movie_app_with_clean/core/constants/authentication/sighnup_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/sighup_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/forgetbutton_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/loginimage_width.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/loginbutton_widget.dart';
@@ -28,12 +29,13 @@ class LoginHome extends ConsumerWidget {
               Text(
                 data.appName,
                 style:
-                    const TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                    const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
               ),
               SizedBox(
                 height: theme.spaces.space_800 * 2,
               ),
               TextFieldWidget(
+                 controller: ref.read(authenticationProvider.notifier).emailControler,
                 labelText: data.userNameText,
                 icons: const Icon(Icons.person),
               ),
@@ -41,6 +43,7 @@ class LoginHome extends ConsumerWidget {
                 height: theme.spaces.space_150,
               ),
               TextFieldWidget(
+                 controller: ref.read(authenticationProvider.notifier).passwordControler,
                 labelText: data.passwordText,
                 icons: const Icon(Icons.lock),
               ),

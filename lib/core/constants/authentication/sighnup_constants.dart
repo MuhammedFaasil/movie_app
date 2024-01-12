@@ -7,7 +7,7 @@ class SighnUpConstants {
   final emailText = 'Enter your email';
   final numberText = 'Phone Number';
   final passwordText = 'Enter Password';
-  final haveAccount = 'already have an account';
+  final haveAccount = 'already have an account?';
   final signUp = 'Sighn Up';
 }
 

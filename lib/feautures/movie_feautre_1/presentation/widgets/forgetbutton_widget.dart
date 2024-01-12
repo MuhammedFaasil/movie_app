@@ -17,6 +17,8 @@ class ForgetButtonWidget extends ConsumerWidget {
                 onPressed: () {},
                 child: Text(
                   ref.watch(loginConstantsProvider).buttonText,
+                  style:
+                      TextStyle(color: AppTheme.of(context).colors.secondary),
                 )),
           ],
         ));
