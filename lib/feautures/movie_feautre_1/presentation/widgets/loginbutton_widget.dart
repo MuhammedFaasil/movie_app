@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_with_clean/core/constants/login/login_constants.dart';
+import 'package:movie_app_with_clean/core/constants/authentication/login_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 
 class LoginButtonWidget extends ConsumerWidget {
-  LoginButtonWidget({super.key});
+  final String text;
+  LoginButtonWidget({super.key,required this.text});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -15,7 +16,7 @@ class LoginButtonWidget extends ConsumerWidget {
             backgroundColor: AppTheme.of(context).colors.secondary),
         onPressed: () {},
         child: Text(
-          ref.watch(loginConstantsProvider).loginText,
+          text,
           style: TextStyle(
               fontSize: 20,
               color: AppTheme.of(context).colors.primary,

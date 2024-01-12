@@ -7,8 +7,13 @@ class LoginConstants {
   final userNameText = 'Enter Username';
   final passwordText = 'Enter Password';
   final loginText = 'Sign in';
-  final otherLogin = 'or login with';
+  final continutext = 'or login with';
+  final otherLogin = "if you don't have an account";
   final buttonText = 'Forget password ?';
+  final googleLogo =
+      'asset/image/2a5758d6-4edb-4047-87bb-e6b94dbbbab0-cover.png';
+  final moviLogo =
+      'asset/image/kisspng-photographic-film-movie-camera-cinema-website-and-mobile-application-development-service-5d3fc924ce3b33.8538265315644613488447-removebg-preview.png';
 }
 
 @riverpod

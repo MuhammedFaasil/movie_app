@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:movie_app_with_clean/core/constants/login/login_constants.dart';
+import 'package:movie_app_with_clean/core/constants/authentication/login_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 
 class ForgetButtonWidget extends ConsumerWidget {
@@ -17,8 +17,6 @@ class ForgetButtonWidget extends ConsumerWidget {
                 onPressed: () {},
                 child: Text(
                   ref.watch(loginConstantsProvider).buttonText,
-                  style:
-                      TextStyle(color: AppTheme.of(context).colors.secondary),
                 )),
           ],
         ));
