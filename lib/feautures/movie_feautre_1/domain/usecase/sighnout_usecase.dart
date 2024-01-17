@@ -9,8 +9,8 @@ final class SighnOutUseCase {
   Future<void> call() async {
     try {
       await repository.sighnOut();
-    } on FirebaseAuthException catch (e) {
-      throw SighnOutExceptions(e.message ?? 'sighnout failed please retry', e.code);
+    } on Exception{
+      throw SighnOutExceptions("cannot sighnout","please check network");
     }
   }
 }

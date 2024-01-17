@@ -6,12 +6,11 @@ final class SighnInUseCase {
   final AuthenticationRepository repository;
   SighnInUseCase({required this.repository});
 
-  Future<UserCredential> call(String email, String password) async {
+  Future<void> call(String email, String password) async {
     try {
-      return await repository.sighnInWithEmail(email, password);
-    } on FirebaseAuthException catch (e) {
-      throw SighnInExceptions(
-          e.message ?? 'sighnin failed please try again', e.code);
+      await repository.sighnInWithEmail(email, password);
+    } on Exception {
+      throw SighnInExceptions('cannot login', 'try again');
     }
   }
 }

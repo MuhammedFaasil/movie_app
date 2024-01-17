@@ -4,15 +4,13 @@ import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 
 class SighnUpButtonWidget extends ConsumerWidget {
+  final TextEditingController emailController;
+  final TextEditingController passwordController;
   final String text;
-  const SighnUpButtonWidget({super.key, required this.text});
+  const SighnUpButtonWidget({super.key, required this.text,required this.emailController,required this.passwordController});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final email = ref.read(authenticationProvider.notifier).emailControler;
-    final password =
-        ref.read(authenticationProvider.notifier).passwordControler;
-
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
             minimumSize: Size(MediaQuery.sizeOf(context).width / 1.1,
@@ -20,9 +18,9 @@ class SighnUpButtonWidget extends ConsumerWidget {
             backgroundColor: AppTheme.of(context).colors.secondary),
         onPressed: () {
           ref
-              .read(authenticationProvider.notifier)
-              .sighnUpWithEmail(email.text, password.text);
-          ref.read(authenticationProvider.notifier).clear();
+              .read(authenticationProvider(context).notifier)
+              .sighnUpWithEmail(emailController.text, passwordController.text);
+         
         },
         child: Text(
           text,

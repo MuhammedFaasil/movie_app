@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/login_constants.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/sighnup_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
-import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/login_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/loginimage_width.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/pagenavigation_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/sighnup_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/textfield_widget.dart';
 
-class SignUpHome extends ConsumerWidget {
+class SignUpHome extends HookConsumerWidget {
+  static const routerPath = '/signin';
   const SignUpHome({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final nameControler = useTextEditingController();
+    final mobileControler = useTextEditingController();
+    final emailControler = useTextEditingController();
+    final passwordControler = useTextEditingController();
     final data = ref.watch(loginConstantsProvider);
     final sighn = ref.watch(sighnUpConstantsProvider);
     final theme = AppTheme.of(context);
@@ -33,32 +41,37 @@ class SignUpHome extends ConsumerWidget {
                 height: theme.spaces.space_200,
               ),
               TextFieldWidget(
-                controller: ref.read(authenticationProvider.notifier).nameControler,
-                  labelText: sighn.nameText, icons: Icon(Icons.person)),
+                  controller: nameControler,
+                  labelText: sighn.nameText,
+                  icons: const Icon(Icons.person)),
               SizedBox(
                 height: theme.spaces.space_200,
               ),
               TextFieldWidget(
-                 controller: ref.read(authenticationProvider.notifier).mobileControler,
-                  labelText: sighn.numberText, icons: Icon(Icons.phone)),
+                  controller: mobileControler,
+                  labelText: sighn.numberText,
+                  icons: const Icon(Icons.phone)),
               SizedBox(
                 height: theme.spaces.space_200,
               ),
               TextFieldWidget(
-                 controller: ref.read(authenticationProvider.notifier).emailControler,
+                  controller: emailControler,
                   labelText: sighn.emailText,
-                  icons: Icon(Icons.email_outlined)),
+                  icons: const Icon(Icons.email_outlined)),
               SizedBox(
                 height: theme.spaces.space_200,
               ),
               TextFieldWidget(
-                 controller: ref.read(authenticationProvider.notifier).passwordControler,
+                  controller: passwordControler,
                   labelText: sighn.passwordText,
-                  icons: Icon(Icons.lock_open_outlined)),
+                  icons: const Icon(Icons.lock_open_outlined)),
               SizedBox(
                 height: theme.spaces.space_200 * 2,
               ),
-              SighnUpButtonWidget(text: sighn.signUp),
+              SighnUpButtonWidget(
+                  emailController: emailControler,
+                  passwordController: passwordControler,
+                  text: sighn.signUp),
               SizedBox(
                 height: theme.spaces.space_200 * 4,
               ),
@@ -72,7 +85,8 @@ class SignUpHome extends ConsumerWidget {
                   SighnInOrUpWidget(
                     label: data.loginText,
                     onPressed: () {
-                      Navigator.pop(context);
+                      print('object');
+                      context.go(LoginHome.routerPath);
                     },
                   )
                 ],

@@ -9,7 +9,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final FireBaseAuthMethods dataSource;
   AuthenticationRepositoryImpl({required this.dataSource});
   @override
-  Future<UserCredential> sighnInWithEmail(String email, String password) {
+  Future<void> sighnInWithEmail(String email, String password) {
     return dataSource.sighnInEmail(email, password);
   }
 
@@ -19,8 +19,23 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<UserCredential> sighnUpWithEmail(String email, String password) {
-    return dataSource.sighnUpEmail(email, password);
+  Future<void> sighnUpWithEmail(String email, String password) async{
+     await dataSource.sighnUpEmail(email, password);
+  }
+
+  @override
+  Future<void> verifyEmail() async {
+    await dataSource.verifyEmail();
+  }
+
+  @override
+  Future<void> signWithGoogle() async {
+    await dataSource.signInWithGoogle();
+  }
+
+  @override
+  Future<void> resetPassword(String email) async {
+    await dataSource.forgetPassword(email);
   }
 }
 

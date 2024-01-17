@@ -6,7 +6,7 @@ class LoginConstants {
   final appName = 'Movie Box';
   final userNameText = 'Enter email';
   final passwordText = 'Enter Password';
-  final loginText = 'Sign in';
+  final loginText = 'Login';
   final continutext = 'or login with';
   final otherLogin = "if you don't have an account?";
   final buttonText = 'Forget password ?';

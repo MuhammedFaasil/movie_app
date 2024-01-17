@@ -1,13 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 abstract class FireBaseAuthMethods {
-  Future<UserCredential> sighnUpEmail(
+  Future<void> sighnUpEmail(
     String email,
     String password,
   );
-  Future<UserCredential> sighnInEmail(
+  Future<void> sighnInEmail(
     String email,
     String password,
   );
   Future<void> sighnOut();
+  Future<void> verifyEmail();
+  Future<void> signInWithGoogle();
+  Future<void> forgetPassword(String email);
 }

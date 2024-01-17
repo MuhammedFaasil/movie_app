@@ -8,7 +8,7 @@ class SighnUpConstants {
   final numberText = 'Phone Number';
   final passwordText = 'Enter Password';
   final haveAccount = 'already have an account?';
-  final signUp = 'Sighn Up';
+  final signUp = 'Sign Up';
 }
 
 @riverpod
