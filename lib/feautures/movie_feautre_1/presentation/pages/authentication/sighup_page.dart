@@ -31,12 +31,13 @@ class SignUpHome extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GoogleImageWidget(googleLogo: data.moviLogo),
-              Text(
-                data.appName,
-                style:
-                    const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
-              ),
+              GoogleImageWidget(
+                  height: 80, width: 100, googleLogo: data.moviLogo,fit: BoxFit.cover,),
+              // Text(
+              //   data.appName,
+              //   style:
+              //       const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+              // ),
               SizedBox(
                 height: theme.spaces.space_200,
               ),

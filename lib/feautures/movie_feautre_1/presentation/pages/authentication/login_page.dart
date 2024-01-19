@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/login_constants.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/sighnup_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/phone_login_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/sighup_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/widgets/forgetbutton_widget.dart';
@@ -31,14 +32,23 @@ class LoginHome extends HookConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              GoogleImageWidget(googleLogo: data.moviLogo),
-              Text(
-                data.appName,
-                style:
-                    const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+              GoogleImageWidget(
+                height: 150,
+                width: 130,
+                googleLogo: data.moviLogo,
+                fit: BoxFit.cover,
               ),
+              // Text(
+              //   data.appName,
+              //   style:
+              //       const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+              // ),
               SizedBox(
-                height: theme.spaces.space_800 * 2,
+                height: theme.spaces.space_800
+                
+                
+                
+                ,
               ),
               TextFieldWidget(
                 controller: emailControler,
@@ -53,7 +63,9 @@ class LoginHome extends HookConsumerWidget {
                 labelText: data.passwordText,
                 icons: const Icon(Icons.lock),
               ),
-              const ForgetButtonWidget(),
+              ForgetButtonWidget(
+                controller: emailControler,
+              ),
               SizedBox(
                 height: theme.spaces.space_400,
               ),
@@ -69,15 +81,34 @@ class LoginHome extends HookConsumerWidget {
                 data.continutext,
                 style: TextStyle(color: theme.colors.textSubtlest),
               ),
-              InkWell(
-                onTap: () {
-                  ref
-                      .read(authenticationProvider(context).notifier)
-                      .signWithGoogle();
-                },
-                child: GoogleImageWidget(
-                  googleLogo: data.googleLogo,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      ref
+                          .read(authenticationProvider(context).notifier)
+                          .signWithGoogle();
+                    },
+                    child: GoogleImageWidget(
+                      width: 100,
+                      height: 80,
+                      googleLogo: data.googleLogo,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      context.go(PhoneLoginPage.routePath);
+                    },
+                    child: GoogleImageWidget(
+                      height: 55,
+                      width: 100,
+                      googleLogo: data.phoneImage,
+                      fit: BoxFit.contain,
+                    ),
+                  )
+                ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

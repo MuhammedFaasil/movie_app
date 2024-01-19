@@ -1,9 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
-import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/home_page.dart';
+
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 
 class LoginButtonWidget extends ConsumerWidget {

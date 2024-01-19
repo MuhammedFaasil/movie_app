@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/data/datasource/firbase_datasource.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/data/datasource/firebase_datasource_impl.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/repository/auth_repository.dart';

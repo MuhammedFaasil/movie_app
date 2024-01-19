@@ -6,6 +6,7 @@ import 'package:movie_app_with_clean/core/utils/snackbar_utils.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/data/repository/auth_repository_impl.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/repository/auth_repository.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/usecase/google_sign_usecase.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/usecase/password_reset_usecase.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/usecase/sighnin_usecase.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/usecase/sighnout_usecase.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/domain/usecase/sighnup_usecase.dart';
@@ -33,6 +34,14 @@ class Authentication extends _$Authentication {
       Future.sync(() => context.go(HomePage.routerPath));
     } on SighnUpExceptions catch (e) {
       Future.sync(() => SnackBarUtils.showMessage(context, e.message));
+    } on BaseExceptions catch (e) {
+      Future.sync(() => SnackBarUtils.showMessage(context, e.message));
+    }
+  }
+
+  Future<void> passwordReset(String email) async {
+    try {
+      PasswordResetUseCase(repository: repository)(email);
     } on BaseExceptions catch (e) {
       Future.sync(() => SnackBarUtils.showMessage(context, e.message));
     }

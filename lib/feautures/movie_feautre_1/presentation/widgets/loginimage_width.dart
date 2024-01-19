@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 
 class GoogleImageWidget extends StatelessWidget {
+  final double height;
+  final double width;
   final String googleLogo;
-  
-  const GoogleImageWidget({super.key,required this.googleLogo});
+  final BoxFit fit;
+
+  const GoogleImageWidget(
+      {super.key,
+      required this.googleLogo,
+      required this.height,
+      required this.width,
+      required this.fit
+      });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 80,
-      decoration:  BoxDecoration(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(
-                  googleLogo))),
+              image: AssetImage(googleLogo), fit:fit)),
     );
   }
 }

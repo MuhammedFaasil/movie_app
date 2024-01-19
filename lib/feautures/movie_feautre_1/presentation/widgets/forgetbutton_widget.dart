@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/login_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 
 class ForgetButtonWidget extends ConsumerWidget {
-  const ForgetButtonWidget({super.key});
+  final TextEditingController controller;
+  const ForgetButtonWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -14,7 +16,11 @@ class ForgetButtonWidget extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ref
+                      .read(authenticationProvider(context).notifier)
+                      .passwordReset(controller.text);
+                },
                 child: Text(
                   ref.watch(loginConstantsProvider).buttonText,
                   style:

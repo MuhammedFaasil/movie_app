@@ -9,6 +9,9 @@ class FireBaseAuthImpl implements FireBaseAuthMethods {
   final FirebaseAuth _auth;
   FireBaseAuthImpl(this._auth);
 
+  String? verificationId;
+  int? resendToken;
+
   @override
   Future<void> sighnUpEmail(String email, String password) async {
     await _auth.createUserWithEmailAndPassword(
@@ -46,6 +49,25 @@ class FireBaseAuthImpl implements FireBaseAuthMethods {
   @override
   Future<void> forgetPassword(String email) async {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  @override
+  Future<void> signWithPhone(String number,) async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: number,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await _auth.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+        }
+      },
+      codeSent: (String verificationId, int? resendToken) {
+        String smsCode = 'xxxx';
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
   }
 }
 
