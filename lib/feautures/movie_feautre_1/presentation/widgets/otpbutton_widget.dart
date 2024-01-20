@@ -5,9 +5,11 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app_with_clean/core/constants/authentication/phone_login_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/otp_verification_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/providers/auth_provider.dart';
 
 class OtpButtonWidget extends ConsumerWidget {
-  const OtpButtonWidget({super.key});
+  final TextEditingController otpControler;
+  const OtpButtonWidget({super.key, required this.otpControler});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +19,10 @@ class OtpButtonWidget extends ConsumerWidget {
                 AppTheme.of(context).spaces.space_700),
             backgroundColor: AppTheme.of(context).colors.secondary),
         onPressed: () {
-          context.go(OtpVerficationPage.routePath);
+          ref
+              .read(authenticationProvider.notifier)
+              .signInWithPhone(context, otpControler.text);
+          // context.go(OtpVerficationPage.routePath);
         },
         child: Text(
           PhoneLoginConstants.buttonText,

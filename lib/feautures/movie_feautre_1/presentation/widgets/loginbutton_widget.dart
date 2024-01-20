@@ -23,8 +23,8 @@ class LoginButtonWidget extends ConsumerWidget {
             backgroundColor: AppTheme.of(context).colors.secondary),
         onPressed: () {
           ref
-              .read(authenticationProvider(context).notifier)
-              .sighnInWithEmail(emailControler.text, passWordControler.text);
+              .read(authenticationProvider.notifier)
+              .sighnInWithEmail(context,emailControler.text, passWordControler.text);
         },
         child: Text(
           text,

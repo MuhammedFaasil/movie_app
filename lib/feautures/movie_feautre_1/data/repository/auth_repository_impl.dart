@@ -18,8 +18,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
-  Future<void> sighnUpWithEmail(String email, String password) async{
-     await dataSource.sighnUpEmail(email, password);
+  Future<void> sighnUpWithEmail(String email, String password) async {
+    await dataSource.sighnUpEmail(email, password);
   }
 
   @override
@@ -35,6 +35,16 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   @override
   Future<void> resetPassword(String email) async {
     await dataSource.forgetPassword(email);
+  }
+
+  @override
+  Future<(String, int?)> signinWithPhone(String phone) async {
+    return await dataSource.signWithPhone(phone);
+  }
+
+  @override
+  Future<void> verifyOtp(String verficationId, String otp) async {
+    await dataSource.verifyOtp(verficationId, otp);
   }
 }
 

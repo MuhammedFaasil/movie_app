@@ -24,7 +24,7 @@ class HomePage extends ConsumerWidget {
         actions: [
           IconButton(
               onPressed: () {
-                ref.read(authenticationProvider(context).notifier).sighnOut();
+                ref.read(authenticationProvider.notifier).sighnOut(context);
                 context.go(SignUpHome.routerPath);
               },
               icon: Icon(
@@ -33,6 +33,7 @@ class HomePage extends ConsumerWidget {
               ))
         ],
       ),
+      body: Center(),
     );
   }
 }

@@ -18,8 +18,8 @@ class SighnUpButtonWidget extends ConsumerWidget {
             backgroundColor: AppTheme.of(context).colors.secondary),
         onPressed: () {
           ref
-              .read(authenticationProvider(context).notifier)
-              .sighnUpWithEmail(emailController.text, passwordController.text);
+              .read(authenticationProvider.notifier)
+              .sighnUpWithEmail(context,emailController.text, passwordController.text);
          
         },
         child: Text(

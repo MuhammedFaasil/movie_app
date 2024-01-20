@@ -11,5 +11,8 @@ abstract class FireBaseAuthMethods {
   Future<void> verifyEmail();
   Future<void> signInWithGoogle();
   Future<void> forgetPassword(String email);
-  Future<void> signWithPhone(String number,);
+  Future<(String , int?)> signWithPhone(
+    String phone,
+  );
+  Future<void> verifyOtp(String verificationId, String otp);
 }

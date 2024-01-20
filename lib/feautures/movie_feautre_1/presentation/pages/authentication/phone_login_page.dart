@@ -24,41 +24,45 @@ class PhoneLoginPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.colors.primary,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GoogleImageWidget(
-                height: 150, width: 130, googleLogo: data.moviLogo,fit: BoxFit.cover,),
-            // Text(
-            //   data.appName,
-            //   style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
-            // ),
-            SizedBox(
-              height: theme.spaces.space_800 ,
-            ),
-            TextFieldWidget(
-                labelText: PhoneLoginConstants.fieldText,
-                icons: Icon(Icons.phone),
-                controller: mobileControler),
-            SizedBox(
-              height: theme.spaces.space_400,
-            ),
-            OtpButtonWidget(),
-            SizedBox(
-              height: theme.spaces.space_800 * 2,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(PhoneLoginConstants.backText),
-                SighnInOrUpWidget(
-                    label: PhoneLoginConstants.logText,
-                    onPressed: () {
-                      context.go(LoginHome.routerPath);
-                    })
-              ],
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GoogleImageWidget(
+                  height: 150, width: 130, googleLogo: data.moviLogo,fit: BoxFit.cover,),
+              // Text(
+              //   data.appName,
+              //   style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+              // ),
+              SizedBox(
+                height: theme.spaces.space_800 ,
+              ),
+              TextFieldWidget(
+                  labelText: PhoneLoginConstants.fieldText,
+                  icons: Icon(Icons.phone),
+                  controller: mobileControler),
+              SizedBox(
+                height: theme.spaces.space_400,
+              ),
+              OtpButtonWidget(
+                otpControler: mobileControler,
+              ),
+              SizedBox(
+                height: theme.spaces.space_800 * 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(PhoneLoginConstants.backText),
+                  SighnInOrUpWidget(
+                      label: PhoneLoginConstants.logText,
+                      onPressed: () {
+                        context.push(LoginHome.routerPath);
+                      })
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

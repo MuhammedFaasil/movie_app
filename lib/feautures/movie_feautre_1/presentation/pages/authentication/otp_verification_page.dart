@@ -20,30 +20,34 @@ class OtpVerficationPage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: theme.colors.primary,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GoogleImageWidget(
-                height: 80, width: 100, googleLogo: data.moviLogo,fit: BoxFit.cover,),
-            Text(
-              data.appName,
-              style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              height: theme.spaces.space_500,
-            ),
-            TextFieldWidget(
-                labelText: PhoneLoginConstants.otpText,
-                icons: Icon(Icons.lock),
-                controller: mobileControler),
-            SizedBox(
-              height: theme.spaces.space_400,
-            ),
-            ConfirmOtpWidget(),
-            SizedBox(
-              height: theme.spaces.space_500 * 2,
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GoogleImageWidget(
+                  height: 80, width: 100, googleLogo: data.moviLogo,fit: BoxFit.cover,),
+              Text(
+                data.appName,
+                style: const TextStyle(fontSize: 35, fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: theme.spaces.space_500,
+              ),
+              TextFieldWidget(
+                  labelText: PhoneLoginConstants.otpText,
+                  icons: Icon(Icons.lock),
+                  controller: mobileControler),
+              SizedBox(
+                height: theme.spaces.space_400,
+              ),
+              ConfirmOtpWidget(
+                otpController: mobileControler,
+              ),
+              SizedBox(
+                height: theme.spaces.space_500 * 2,
+              ),
+            ],
+          ),
         ),
       ),
     );

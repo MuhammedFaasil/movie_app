@@ -87,8 +87,8 @@ class LoginHome extends HookConsumerWidget {
                   InkWell(
                     onTap: () {
                       ref
-                          .read(authenticationProvider(context).notifier)
-                          .signWithGoogle();
+                          .read(authenticationProvider.notifier)
+                          .signWithGoogle(context);
                     },
                     child: GoogleImageWidget(
                       width: 100,
