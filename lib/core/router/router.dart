@@ -4,7 +4,9 @@ import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/page
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/otp_verification_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/phone_login_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/sighup_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/home_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/overview_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -37,6 +39,9 @@ final router = GoRouter(initialLocation: HomePage.routerPath, routes: [
     path: OtpVerficationPage.routePath,
     builder: (context, state) => OtpVerficationPage(),
   ),
+  GoRoute(path: OverViewPage.routePath,
+  builder: (context, state) => OverViewPage(entity: state.extra as MovieEntity),
+  )
 ]);
 @riverpod
 GoRouter route(RouteRef ref) {

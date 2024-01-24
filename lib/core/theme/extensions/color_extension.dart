@@ -8,27 +8,31 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
   final Color textSubtle;
   final Color textSubtlest;
   final Color backgroundDanger;
+  final Color fieldText;
+  final Color movieName;
 
-  AppColorExtension({
-    required this.primary,
-    required this.secondary,
-    required this.text,
-    required this.textInverse,
-    required this.textSubtle,
-    required this.textSubtlest,
-    required this.backgroundDanger,
-  });
+  AppColorExtension(
+      {required this.primary,
+      required this.secondary,
+      required this.text,
+      required this.textInverse,
+      required this.textSubtle,
+      required this.textSubtlest,
+      required this.backgroundDanger,
+      required this.movieName,
+      required this.fieldText});
 
   @override
-  ThemeExtension<AppColorExtension> copyWith({
-    Color? primary,
-    Color? secondary,
-    Color? text,
-    Color? textInverse,
-    Color? textSubtle,
-    Color? textSubtlest,
-    Color? backgroundDanger,
-  }) {
+  ThemeExtension<AppColorExtension> copyWith(
+      {Color? primary,
+      Color? secondary,
+      Color? text,
+      Color? textInverse,
+      Color? textSubtle,
+      Color? textSubtlest,
+      Color? backgroundDanger,
+      Color? movieName,
+      Color? fieldText}) {
     return AppColorExtension(
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
@@ -37,6 +41,8 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       textSubtle: textSubtle ?? this.textSubtle,
       textSubtlest: textSubtlest ?? this.textSubtlest,
       backgroundDanger: backgroundDanger ?? this.backgroundDanger,
+      movieName: movieName ?? this.movieName,
+      fieldText: fieldText ?? this.fieldText,
     );
   }
 
@@ -56,6 +62,8 @@ class AppColorExtension extends ThemeExtension<AppColorExtension> {
       textSubtlest: Color.lerp(textSubtlest, other.textSubtlest, t)!,
       backgroundDanger:
           Color.lerp(backgroundDanger, other.backgroundDanger, t)!,
+      fieldText: Color.lerp(fieldText, other.fieldText, t)!,
+      movieName: Color.lerp(movieName, other.movieName, t)!,
     );
   }
 }
