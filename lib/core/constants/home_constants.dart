@@ -7,4 +7,6 @@ class HomeConstants {
   static const watchText = 'TRAILER';
   static const watchList = 'WATCHLIST';
   static const shareTxt = 'RECOMMEND';
+  static const actionText = 'Action Movies';
+  static final List<String> text = ['Action', 'drama', 'Comedy', 'Crime', 'Romance'];
 }

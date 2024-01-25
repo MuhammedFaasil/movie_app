@@ -29,11 +29,32 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     ];
     return results;
   }
-  
+
   @override
-  Future<List<MovieEntity>> getNowPlaying()async {
-final data = await dataSource.fetchMovies();
+  Future<List<MovieEntity>> getNowPlaying() async {
+    final data = await dataSource.getNowPlaying();
     late List<MovieEntity> results;
+    results = [
+      for (final result in data.results)
+        MovieEntity(
+            backdropPath: result.backdropPath,
+            originalLanguage: result.originalLanguage,
+            originalTitle: result.originalTitle,
+            overview: result.overview,
+            posterPath: result.posterPath,
+            title: result.title,
+            popularity: result.popularity,
+            voteAverage: result.voteAverage,
+            voteCount: result.voteCount,
+            video: result.video)
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<MovieEntity>> actionMovies() async {
+    final data = await dataSource.actionApiMovies();
+     late List<MovieEntity> results;
     results = [
       for (final result in data.results)
         MovieEntity(

@@ -5,6 +5,7 @@ import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/page
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/phone_login_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feautre_1/presentation/pages/authentication/sighup_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/action_movie_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/home_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/overview_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -41,6 +42,9 @@ final router = GoRouter(initialLocation: HomePage.routerPath, routes: [
   ),
   GoRoute(path: OverViewPage.routePath,
   builder: (context, state) => OverViewPage(entity: state.extra as MovieEntity),
+  ),
+  GoRoute(path: ActionMoviesPage.routePath,
+  builder: (context, state) => ActionMoviesPage(entity: state.extra as MovieEntity,),
   )
 ]);
 @riverpod

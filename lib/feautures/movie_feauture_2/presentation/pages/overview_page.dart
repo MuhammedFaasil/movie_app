@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app_with_clean/core/constants/home_constants.dart';
 import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart';
@@ -32,6 +33,14 @@ class OverViewPage extends StatelessWidget {
                               ApiConstants.imagePath + entity.posterPath),
                           fit: BoxFit.cover)),
                 ),
+                Positioned(
+                    top: 40,
+                    left: 10,
+                    child: IconButton(
+                        onPressed: () {
+                          context.pop();
+                        },
+                        icon: const Icon(Icons.arrow_back_ios))),
                 PositiondWidget(
                   txt: entity.voteAverage.toStringAsFixed(1),
                   top: 40,
@@ -127,7 +136,7 @@ class OverViewPage extends StatelessWidget {
               textAlign: TextAlign.start,
               style: GoogleFonts.mohave(fontSize: 18),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
 

@@ -6,5 +6,6 @@ part 'movie_state.freezed.dart';
 class MovieState with _$MovieState {
   factory MovieState(
       {required List<MovieEntity> movies,
-      required List<MovieEntity> nowPlaying}) = _MovieState;
+      required List<MovieEntity> nowPlaying,
+      required List<MovieEntity> actionMovies}) = _MovieState;
 }

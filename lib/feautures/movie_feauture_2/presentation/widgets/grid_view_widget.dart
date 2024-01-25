@@ -17,7 +17,7 @@ class GridViewWidget extends ConsumerWidget {
     return Scaffold(
         body: switch (ref.watch(popularMovieProvider)) {
       AsyncData(:final value) => SizedBox(
-          height: 300,
+          height: 350,
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,

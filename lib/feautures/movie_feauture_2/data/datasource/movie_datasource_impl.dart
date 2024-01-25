@@ -8,7 +8,8 @@ part 'movie_datasource_impl.g.dart';
 
 class ApiDatasourceImpl implements ApiServicesDataSource {
   final url = ApiConstants.appUrl;
-  final nowPlying = ApiConstants.nowPlayingPage;
+  final nowPlying = ApiConstants.nowPlaying;
+  final action = ApiConstants.actionUrl;
   final token = ApiConstants.token;
   final dio = Dio();
   @override
@@ -22,6 +23,13 @@ class ApiDatasourceImpl implements ApiServicesDataSource {
   Future<MovieModel> getNowPlaying() async {
     dio.options.headers['Authorization'] = 'Bearer $token';
     final Response response = await dio.get(nowPlying);
+    return MovieModel.fromJson(response.data);
+  }
+
+  @override
+  Future<MovieModel> actionApiMovies() async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final Response response = await dio.get(action);
     return MovieModel.fromJson(response.data);
   }
 }
