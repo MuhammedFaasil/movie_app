@@ -20,9 +20,14 @@ class DrawerWidget extends ConsumerWidget {
             child: Center(
                 child: Column(
               children: [
-                CircleAvatar(
-                  backgroundColor: AppTheme.of(context).colors.secondary,
-                  radius: 30,
+                InkWell(
+                  onTap: () {
+                    print("object");
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: AppTheme.of(context).colors.secondary,
+                    radius: 30,
+                  ),
                 ),
                 SizedBox(
                   height: AppTheme.of(context).spaces.space_150,

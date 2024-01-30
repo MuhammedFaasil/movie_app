@@ -4,13 +4,13 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app_with_clean/core/constants/home_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
-import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/genre_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/providers/movie_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/action_movie_widget.dart';
 
 class ActionMoviesPage extends ConsumerWidget {
   static const routePath = '/action';
-  final MovieEntity entity;
+  final GenreEntity entity;
   const ActionMoviesPage({super.key, required this.entity});
 
   @override

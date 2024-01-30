@@ -1,5 +1,6 @@
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource_impl.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/genre_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/repository/movie_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -16,6 +17,7 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
+            id: result.id,
             backdropPath: result.backdropPath,
             originalLanguage: result.originalLanguage,
             originalTitle: result.originalTitle,
@@ -37,6 +39,7 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
+            id: result.id,
             backdropPath: result.backdropPath,
             originalLanguage: result.originalLanguage,
             originalTitle: result.originalTitle,
@@ -54,10 +57,11 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
   @override
   Future<List<MovieEntity>> actionMovies() async {
     final data = await dataSource.actionApiMovies();
-     late List<MovieEntity> results;
+    late List<MovieEntity> results;
     results = [
       for (final result in data.results)
         MovieEntity(
+            id: result.id,
             backdropPath: result.backdropPath,
             originalLanguage: result.originalLanguage,
             originalTitle: result.originalTitle,
@@ -68,6 +72,39 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
             voteAverage: result.voteAverage,
             voteCount: result.voteCount,
             video: result.video)
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<GenreEntity>> genreApi() async {
+    final data = await dataSource.genreApi();
+    late List<GenreEntity> res;
+    res = [
+      for (final result in data.genres)
+        GenreEntity(id: result.id, name: result.name)
+    ];
+    return res;
+  }
+
+  @override
+  Future<List<MovieEntity>> getPopularMovie() async {
+    final data = await dataSource.getTrendingMovies();
+    late List<MovieEntity> results;
+    results = [
+      for (final result in data.results)
+        MovieEntity(
+            backdropPath: result.backdropPath,
+            originalLanguage: result.originalLanguage,
+            originalTitle: result.originalTitle,
+            overview: result.overview,
+            posterPath: result.posterPath,
+            title: result.title,
+            video: result.video,
+            voteAverage: result.voteAverage,
+            voteCount: result.voteCount,
+            popularity: result.popularity,
+            id: result.id)
     ];
     return results;
   }

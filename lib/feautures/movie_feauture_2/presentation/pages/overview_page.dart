@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app_with_clean/core/constants/home_constants.dart';
 import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/favourite_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/providers/movie_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/positiond_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/watch_and_view_widget.dart';
 
-class OverViewPage extends StatelessWidget {
+class OverViewPage extends ConsumerWidget {
   static const routePath = '/overview';
   final MovieEntity entity;
+
   const OverViewPage({super.key, required this.entity});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = AppTheme.of(context);
     return Scaffold(
       backgroundColor: AppTheme.of(context).colors.fieldText,
@@ -40,7 +44,10 @@ class OverViewPage extends StatelessWidget {
                         onPressed: () {
                           context.pop();
                         },
-                        icon: const Icon(Icons.arrow_back_ios))),
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: theme.colors.primary,
+                        ))),
                 PositiondWidget(
                   txt: entity.voteAverage.toStringAsFixed(1),
                   top: 40,
@@ -52,26 +59,12 @@ class OverViewPage extends StatelessWidget {
                     top: 120,
                     right: 10,
                     icons: Icons.remove_red_eye),
-                // Positioned(
-                //     bottom: 50,
-                //     left: 10,
-                //     child: Text(
-                //       entity.originalTitle,
-                //       style: GoogleFonts.mohave(
-                //         fontSize: 30,
-                //         fontWeight: FontWeight.w700,
-                //         color: theme.colors.movieName,
-                //       ),
-                //     )
-                //     ),
                 Positioned(
                     bottom: 0,
                     child: Container(
                       width: MediaQuery.sizeOf(context).width,
                       height: 300,
                       decoration: const BoxDecoration(
-                        // borderRadius:
-                        //     BorderRadius.vertical(top: Radius.circular(20))
                         gradient: LinearGradient(
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
@@ -98,11 +91,25 @@ class OverViewPage extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white,
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
-                    ))
+                    )),
+                Positioned(
+                    right: 10,
+                    bottom: 15,
+                    child: IconButton(
+                        onPressed: () {
+                          ref
+                              .read(movieApiProvider.notifier)
+                              .addToFIrestore(entity);
+                          context.push(FavouritePage.routePath);
+                        },
+                        icon: Icon(
+                          Icons.favorite_border,
+                          color: theme.colors.primary,
+                        )))
               ],
             ),
             SizedBox(
@@ -131,23 +138,17 @@ class OverViewPage extends StatelessWidget {
             SizedBox(
               height: theme.spaces.space_150,
             ),
-            Text(
-              entity.overview,
-              textAlign: TextAlign.start,
-              style: GoogleFonts.mohave(fontSize: 18),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 1.1,
+              child: Text(
+                entity.overview,
+                textAlign: TextAlign.start,
+                style: GoogleFonts.mohave(fontSize: 18),
+              ),
             ),
             const SizedBox(
               height: 30,
             ),
-
-            // Container(
-            //   width: MediaQuery.sizeOf(context).width / 1.1,
-            //   height: 200,
-            //   decoration: BoxDecoration(
-            //       color: Colors.grey[200],
-            //       borderRadius: BorderRadius.circular(10)),
-            //   child: ,
-            // )
           ],
         ),
       ),

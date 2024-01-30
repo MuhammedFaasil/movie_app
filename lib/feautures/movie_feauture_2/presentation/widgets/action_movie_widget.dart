@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
-import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/action_movie_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/overview_page.dart';
 
 class ActionGridWidget extends StatelessWidget {
