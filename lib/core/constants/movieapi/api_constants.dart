@@ -11,4 +11,7 @@ class ApiConstants {
   static const actionUrl =
       'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=3&sort_by=popularity.desc&with_genres=28';
   static const genreurl = "https://api.themoviedb.org/3/genre/movie/list";
+  static const searchUrl = "https://api.themoviedb.org/3/search/movie";
+  static const allGenre =
+      'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 }

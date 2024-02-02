@@ -7,4 +7,5 @@ abstract class ApiServicesDataSource {
   Future<MovieModel> actionApiMovies();
   Future<MovieModel> getTrendingMovies();
   Future<Genre> genreApi();
+  Future<MovieModel> searchMovie(String movieName );
 }

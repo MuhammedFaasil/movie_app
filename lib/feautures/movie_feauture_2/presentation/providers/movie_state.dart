@@ -10,5 +10,6 @@ class MovieState with _$MovieState {
       required List<MovieEntity> nowPlaying,
       required List<GenreEntity> genre,
       required List<MovieEntity> popular,
+      required List<MovieEntity>? search,
       required List<MovieEntity> actionMovies}) = _MovieState;
 }

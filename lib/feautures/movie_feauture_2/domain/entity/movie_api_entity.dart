@@ -12,8 +12,9 @@ class MovieEntity with _$MovieEntity {
     required String posterPath,
     required String title,
     required bool video,
+    // required DateTime releaseDate,
     required double voteAverage,
-    required int voteCount,
+    required int? voteCount,
     required double popularity,
   }) = _MovieEntity;
 }

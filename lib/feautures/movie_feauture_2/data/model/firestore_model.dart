@@ -9,20 +9,22 @@ class FireStoreModel with _$FireStoreModel {
   FireStoreModel._();
   factory FireStoreModel({
     required int id,
-    required String backdropPath,
-    required String originalLanguage,
-    required String originalTitle,
-    required String overview,
-    required String posterPath,
-    required String title,
+    required String? backdropPath,
+    required String? originalLanguage,
+    required String? originalTitle,
+    required String? overview,
+    required String? posterPath,
+    required String? title,
     required bool video,
     required double voteAverage,
-    required int voteCount,
+    // required DateTime releaseDate,
+    required int? voteCount,
     required double popularity,
   }) = _FireStoreModel;
 
   factory FireStoreModel.fromJson(Map<String, dynamic> json) =>
       _$FireStoreModelFromJson(json);
+
   factory FireStoreModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,

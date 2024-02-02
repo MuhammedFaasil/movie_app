@@ -6,14 +6,28 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'fire_base_datasource_impl.g.dart';
 
 class FireBaseDataSourceImpl implements FireBaseDataSource {
+  final collection = FirebaseFirestore.instance
+      .collection('favourite')
+      .withConverter(
+          fromFirestore: FireStoreModel.fromFirestore,
+          toFirestore: (model, _) => model.toFirestore());
   @override
   Future<void> addToFireStore(FireStoreModel model) async {
-    FirebaseFirestore.instance
-        .collection('favourite')
-        .doc(model.id.toString())
-        .set(model.toFirestore());
+    collection.doc(model.id.toString()).set(model);
+  }
+
+  @override
+  Stream<QuerySnapshot<FireStoreModel>> getFromFIreStore() {
+    final querySnapshot = collection.snapshots();
+    return querySnapshot;
+  }
+
+  @override
+  Future<void> deletFromFireStore(String id) async {
+    await collection.doc(id).delete();
   }
 }
+
 @riverpod
 FireBaseDataSource fireBaseDataSource(FireBaseDataSourceRef ref) {
   return FireBaseDataSourceImpl();

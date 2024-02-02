@@ -17,17 +17,19 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
-            id: result.id,
-            backdropPath: result.backdropPath,
-            originalLanguage: result.originalLanguage,
-            originalTitle: result.originalTitle,
-            overview: result.overview,
-            posterPath: result.posterPath,
-            title: result.title,
-            popularity: result.popularity,
-            voteAverage: result.voteAverage,
-            voteCount: result.voteCount,
-            video: result.video)
+          id: result.id,
+          backdropPath: result.backdropPath ?? "",
+          originalLanguage: result.originalLanguage ?? "",
+          originalTitle: result.originalTitle ?? "",
+          overview: result.overview ?? "",
+          posterPath: result.posterPath ?? "",
+          title: result.title ?? "",
+          popularity: result.popularity,
+          voteAverage: result.voteAverage,
+          voteCount: result.voteCount,
+          video: result.video,
+          // releaseDate: result.releaseDate
+        )
     ];
     return results;
   }
@@ -39,17 +41,19 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
-            id: result.id,
-            backdropPath: result.backdropPath,
-            originalLanguage: result.originalLanguage,
-            originalTitle: result.originalTitle,
-            overview: result.overview,
-            posterPath: result.posterPath,
-            title: result.title,
-            popularity: result.popularity,
-            voteAverage: result.voteAverage,
-            voteCount: result.voteCount,
-            video: result.video)
+          id: result.id,
+          backdropPath: result.backdropPath ?? "",
+          originalLanguage: result.originalLanguage ?? "",
+          originalTitle: result.originalTitle ?? "",
+          overview: result.overview ?? "",
+          posterPath: result.posterPath ?? "",
+          title: result.title ?? "",
+          popularity: result.popularity,
+          voteAverage: result.voteAverage,
+          voteCount: result.voteCount,
+          video: result.video,
+          //  releaseDate: result.releaseDate
+        )
     ];
     return results;
   }
@@ -61,17 +65,19 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
-            id: result.id,
-            backdropPath: result.backdropPath,
-            originalLanguage: result.originalLanguage,
-            originalTitle: result.originalTitle,
-            overview: result.overview,
-            posterPath: result.posterPath,
-            title: result.title,
-            popularity: result.popularity,
-            voteAverage: result.voteAverage,
-            voteCount: result.voteCount,
-            video: result.video)
+          id: result.id,
+          backdropPath: result.backdropPath ?? "",
+          originalLanguage: result.originalLanguage ?? "",
+          originalTitle: result.originalTitle ?? "",
+          overview: result.overview ?? "",
+          posterPath: result.posterPath ?? "",
+          title: result.title ?? "",
+          popularity: result.popularity,
+          voteAverage: result.voteAverage,
+          voteCount: result.voteCount,
+          video: result.video,
+          //  releaseDate: result.releaseDate
+        )
     ];
     return results;
   }
@@ -94,17 +100,41 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     results = [
       for (final result in data.results)
         MovieEntity(
-            backdropPath: result.backdropPath,
-            originalLanguage: result.originalLanguage,
-            originalTitle: result.originalTitle,
-            overview: result.overview,
-            posterPath: result.posterPath,
-            title: result.title,
+          backdropPath: result.backdropPath ?? '',
+          originalLanguage: result.originalLanguage ?? '',
+          originalTitle: result.originalTitle ?? '',
+          overview: result.overview ?? '',
+          posterPath: result.posterPath ?? '',
+          title: result.title ?? '',
+          video: result.video,
+          voteAverage: result.voteAverage,
+          voteCount: result.voteCount,
+          popularity: result.popularity,
+          id: result.id,
+          // releaseDate: result.releaseDate
+        )
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<MovieEntity>> searchMovie(String movieName) async {
+    final data = await dataSource.searchMovie(movieName);
+    late List<MovieEntity> results;
+    results = [
+      for (final result in data.results)
+        MovieEntity(
+            id: result.id,
+            backdropPath: result.backdropPath ?? "",
+            originalLanguage: result.originalLanguage ?? "",
+            originalTitle: result.originalTitle ?? "",
+            overview: result.overview ?? "",
+            posterPath: result.posterPath ?? "",
+            title: result.title ?? "",
             video: result.video,
             voteAverage: result.voteAverage,
             voteCount: result.voteCount,
-            popularity: result.popularity,
-            id: result.id)
+            popularity: result.popularity)
     ];
     return results;
   }

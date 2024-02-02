@@ -6,5 +6,6 @@ abstract class MovieApiRepository {
   Future<List<MovieEntity>> getNowPlaying();
   Future<List<MovieEntity>> actionMovies();
   Future<List<GenreEntity>> genreApi();
-   Future<List<MovieEntity>> getPopularMovie();
+  Future<List<MovieEntity>> getPopularMovie();
+  Future<List<MovieEntity>> searchMovie(String movieName);
 }

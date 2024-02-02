@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:movie_app_with_clean/core/constants/home_constants.dart';
 import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
-import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/favourite_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/review_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/providers/movie_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/positiond_widget.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/review_widget.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/search_field_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/watch_and_view_widget.dart';
 
-class OverViewPage extends ConsumerWidget {
+class OverViewPage extends HookConsumerWidget {
   static const routePath = '/overview';
   final MovieEntity entity;
 
@@ -19,6 +22,7 @@ class OverViewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final commentController = useTextEditingController();
     final theme = AppTheme.of(context);
     return Scaffold(
       backgroundColor: AppTheme.of(context).colors.fieldText,
@@ -104,7 +108,7 @@ class OverViewPage extends ConsumerWidget {
                           ref
                               .read(movieApiProvider.notifier)
                               .addToFIrestore(entity);
-                          context.push(FavouritePage.routePath);
+                          // context.push(FavouritePage.routePath);
                         },
                         icon: Icon(
                           Icons.favorite_border,
@@ -147,7 +151,63 @@ class OverViewPage extends ConsumerWidget {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 20,
+            ),
+            SearchFieldWidget(
+                controller: commentController,
+                txt: HomeConstants.reviewTxt,
+                icons: IconButton(
+                    onPressed: () {
+                      ref.read(movieApiProvider.notifier).addReview(
+                          ReviewEntity(
+                              review: commentController.text,
+                              id: entity.id.toString(),
+                              movieId: entity.id.toString()),
+                          entity.id.toString());
+                      commentController.clear();
+                    },
+                    icon: const Icon(Icons.send))),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              children: [
+                Text(
+                  HomeConstants.comntTxt,
+                  style: GoogleFonts.mohave(
+                      fontWeight: FontWeight.bold, fontSize: 22),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width,
+              height: 300,
+              child: StreamBuilder(
+                stream: ref
+                    .read(movieApiProvider.notifier)
+                    .getReview(entity.id.toString()),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ReviewWidget(
+                      value: snapshot.data!,
+                      itemCount: snapshot.data!.length,
+                    );
+                  } else if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text(snapshot.error.toString()),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
             ),
           ],
         ),

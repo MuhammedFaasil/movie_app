@@ -10,6 +10,7 @@ import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pag
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/favourite_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/home_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/overview_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/serch_movie_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'router.g.dart';
@@ -56,7 +57,11 @@ final router = GoRouter(initialLocation: HomePage.routerPath, routes: [
   GoRoute(
     path: FavouritePage.routePath,
     builder: (context, state) => FavouritePage(),
-  )
+  ),
+  GoRoute(
+    path: SearchMoviePage.routePath,
+    builder: (context, state) => SearchMoviePage(),
+  ),
 ]);
 @riverpod
 GoRouter route(RouteRef ref) {

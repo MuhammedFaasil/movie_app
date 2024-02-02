@@ -20,6 +20,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final controller = TextEditingController();
     final theme = AppTheme.of(context);
     return Scaffold(
       drawer: const DrawerWidget(),
@@ -35,6 +36,16 @@ class HomePage extends ConsumerWidget {
           HomeConstants.appName,
           style: GoogleFonts.mohave(color: theme.colors.text),
         ),
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         context.push(FavouritePage.routePath);
+        //       },
+        //       icon: Icon(
+        //         Icons.search,
+        //         color: theme.colors.text,
+        //       ))
+        // ],
       ),
       body: ref.watch(movieApiProvider).isRefreshing
           ? const Center(
@@ -49,11 +60,24 @@ class HomePage extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SearchFieldWidget(),
+                            SearchFieldWidget(
+                              controller: controller,
+                              txt: HomeConstants.fieldText,
+                              icons: IconButton(
+                                  onPressed: () {
+                                    ref
+                                        .read(movieApiProvider.notifier)
+                                        .searchMovie(controller.text, context);
+                                  },
+                                  icon: Icon(Icons.search,
+                                      color: theme.colors.secondary)),
+                            ),
                             SizedBox(
                               height: theme.spaces.space_150,
                             ),
-                            GenereListWidget(data: value.genre),
+                            SizedBox(
+                                height: 120,
+                                child: GenereListWidget(data: value.genre)),
                             SizedBox(
                               height: theme.spaces.space_400,
                             ),

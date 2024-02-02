@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource.dart';
@@ -31,7 +30,8 @@ class ApiDatasourceImpl implements ApiServicesDataSource {
   @override
   Future<MovieModel> actionApiMovies() async {
     dio.options.headers['Authorization'] = 'Bearer $token';
-    final Response response = await dio.get(action);
+    final Response response =
+        await dio.get(ApiConstants.allGenre, queryParameters: {"genre": 28});
     return MovieModel.fromJson(response.data);
   }
 
@@ -46,6 +46,14 @@ class ApiDatasourceImpl implements ApiServicesDataSource {
   Future<MovieModel> getTrendingMovies() async {
     dio.options.headers['Authorization'] = 'Bearer $token';
     final Response response = await dio.get(ApiConstants.popularUri);
+    return MovieModel.fromJson(response.data);
+  }
+
+  @override
+  Future<MovieModel> searchMovie(String movieName) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final Response response = await dio
+        .get(ApiConstants.searchUrl, queryParameters: {'query': movieName});
     return MovieModel.fromJson(response.data);
   }
 }
