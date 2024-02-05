@@ -169,7 +169,7 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
     late List<TrailerEntity> results;
     results = [
       for (final result in data.results)
-        TrailerEntity(id: result.id, title: result.name)
+        TrailerEntity(id: result.id,  name: result.name, key: result.key, type: result.type)
     ];
     return results;
   }

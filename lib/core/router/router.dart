@@ -11,6 +11,7 @@ import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pag
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/home_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/overview_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/serch_movie_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/trailer_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/tvhomescreen_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -38,11 +39,11 @@ final router = GoRouter(initialLocation: HomePage.routerPath, routes: [
   ),
   GoRoute(
     path: PhoneLoginPage.routePath,
-    builder: (context, state) =>const PhoneLoginPage(),
+    builder: (context, state) => const PhoneLoginPage(),
   ),
   GoRoute(
     path: OtpVerficationPage.routePath,
-    builder: (context, state) =>const OtpVerficationPage(),
+    builder: (context, state) => const OtpVerficationPage(),
   ),
   GoRoute(
     path: OverViewPage.routePath,
@@ -63,7 +64,12 @@ final router = GoRouter(initialLocation: HomePage.routerPath, routes: [
     path: SearchMoviePage.routePath,
     builder: (context, state) => SearchMoviePage(),
   ),
- 
+  GoRoute(
+    path: TrailerWidget.routePath,
+    builder: (context, state) => TrailerWidget(
+      movie: state.extra as MovieEntity,
+    ),
+  ),
 ]);
 @riverpod
 GoRouter route(RouteRef ref) {

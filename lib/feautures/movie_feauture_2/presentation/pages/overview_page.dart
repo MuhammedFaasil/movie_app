@@ -11,10 +11,11 @@ import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/review_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/providers/movie_provider.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/providers/trailer_provider.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/positiond_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/review_widget.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/search_field_widget.dart';
-import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/widgets/watch_and_view_widget.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class OverViewPage extends HookConsumerWidget {
   static const routePath = '/overview';
@@ -129,30 +130,28 @@ class OverViewPage extends HookConsumerWidget {
             SizedBox(
               height: theme.spaces.space_100,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                WatchButtonWidget(
-                  icon: Icons.play_circle_outline_outlined,
-                  txt: HomeConstants.watchText,
-                  function: () {
-                    ref
-                        .read(movieApiProvider.notifier)
-                        .getTrailer(entity.id.toString());
-                  },
-                ),
-                WatchButtonWidget(
-                  icon: Icons.add_circle_outline,
-                  txt: HomeConstants.watchList,
-                  function: () {},
-                ),
-                WatchButtonWidget(
-                  icon: Icons.share,
-                  txt: HomeConstants.shareTxt,
-                  function: () {},
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     WatchButtonWidget(
+            //       icon: Icons.play_circle_outline_outlined,
+            //       txt: HomeConstants.watchText,
+            //       function: () {
+            //         context.push(TrailerWidget.routePath);
+            //       },
+            //     ),
+            //     WatchButtonWidget(
+            //       icon: Icons.add_circle_outline,
+            //       txt: HomeConstants.watchList,
+            //       function: () {},
+            //     ),
+            //     WatchButtonWidget(
+            //       icon: Icons.share,
+            //       txt: HomeConstants.shareTxt,
+            //       function: () {},
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: theme.spaces.space_150,
             ),
@@ -160,10 +159,63 @@ class OverViewPage extends HookConsumerWidget {
               width: MediaQuery.sizeOf(context).width / 1.1,
               child: Text(
                 entity.overview,
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.justify,
                 style: GoogleFonts.mohave(fontSize: 18),
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
+            SizedBox(
+              height: theme.spaces.space_400,
+            ),
+            ref.watch(trailerProvider(entity.id.toString())).isRefreshing
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Center(
+                    child: SizedBox(
+                    height: MediaQuery.sizeOf(context).height * .24,
+                    child: Center(
+                      child: switch (
+                          ref.watch(trailerProvider(entity.id.toString()))) {
+                        AsyncData(:final value) => PageView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.length,
+                            itemBuilder: (context, index) {
+                              // return Center(
+                              //   child: Text(value[index].name),
+                              // );
+                              return YoutubePlayer(
+                                controller: YoutubePlayerController(
+                                  initialVideoId: value[index].key,
+                                  flags: const YoutubePlayerFlags(
+                                    autoPlay: false,
+                                    mute: false,
+                                    disableDragSeek: true,
+                                  ),
+                                ),
+                                bufferIndicator: const Center(
+                                    child: CircularProgressIndicator()),
+                                showVideoProgressIndicator: true,
+                              );
+                            },
+                          ),
+                        AsyncError(:final error) => Column(
+                            children: [
+                              Text("$error"),
+                              TextButton(
+                                onPressed: () {
+                                  ref.invalidate(
+                                      trailerProvider(entity.id.toString()));
+                                },
+                                child: const Text('Retry'),
+                              )
+                            ],
+                          ),
+                        _ => const CircularProgressIndicator()
+                      },
+                    ),
+                  )),
             const SizedBox(
               height: 20,
             ),

@@ -19,9 +19,7 @@ class WatchButtonWidget extends StatelessWidget {
             backgroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
-        onPressed: () {
-          function;
-        },
+        onPressed: function,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
