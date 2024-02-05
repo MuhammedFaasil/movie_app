@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,7 +10,7 @@ import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pag
 
 class CaroselWidget extends ConsumerWidget {
   final List<MovieEntity> data;
-  final image = ApiConstants.imagePath;
+  final images = ApiConstants.imagePath;
   const CaroselWidget({super.key, required this.data});
 
   @override
@@ -16,28 +18,33 @@ class CaroselWidget extends ConsumerWidget {
     return CarouselSlider.builder(
         itemCount: data.length,
         itemBuilder: (context, index, realIndex) {
+          final posterPathFile = File(data[index].posterPath);
+          late final ImageProvider image;
+          if (posterPathFile.existsSync()) {
+            image = FileImage(posterPathFile);
+          } else {
+            image = NetworkImage(images + data[index].posterPath);
+          }
           return InkWell(
             onTap: () {
               context.push(OverViewPage.routePath, extra: data[index]);
             },
             child: Container(
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: NetworkImage(image + data[index].posterPath),
-                      fit: BoxFit.cover),
+                  image: DecorationImage(image: image, fit: BoxFit.fill),
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.grey),
             ),
           );
         },
         options: CarouselOptions(
-          height: 400,
+          height: 350,
           aspectRatio: 16 / 9,
-          viewportFraction: 0.7,
+          viewportFraction: 0.9,
           initialPage: 0,
           autoPlay: true,
           autoPlayInterval: Duration(seconds: 4),
-          autoPlayAnimationDuration: Duration(milliseconds: 2000),
+          autoPlayAnimationDuration: Duration(milliseconds: 2500),
           autoPlayCurve: Curves.fastOutSlowIn,
           enlargeCenterPage: true,
           enlargeFactor: 0.3,

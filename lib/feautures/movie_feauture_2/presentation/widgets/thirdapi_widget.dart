@@ -13,7 +13,7 @@ class ListViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 210,
+      height: 230,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: 10,
@@ -26,7 +26,7 @@ class ListViewWidget extends StatelessWidget {
           },
           child: Container(
             width: 135,
-            height: 190,
+            height: 200,
             decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
             child: Padding(
               padding: const EdgeInsets.only(left: 5),
@@ -43,10 +43,10 @@ class ListViewWidget extends StatelessWidget {
                       color: Colors.amber,
                     ),
                     width: 120,
-                    height: 160,
+                    height: 180,
                   ),
                   Text(
-                    data[index].originalTitle,
+                    data[index].title,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.mohave(
                         fontWeight: FontWeight.w600, color: Colors.black),

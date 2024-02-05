@@ -1,7 +1,9 @@
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource_impl.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/model/movie_model.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/genre_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/trailer_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/repository/movie_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -135,6 +137,39 @@ class MoviePiRepositoryImpl implements MovieApiRepository {
             voteAverage: result.voteAverage,
             voteCount: result.voteCount,
             popularity: result.popularity)
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<MovieEntity>> getTv() async {
+    final data = await dataSource.getTv();
+    late List<MovieEntity> results;
+    results = [
+      for (final result in data.results)
+        MovieEntity(
+            id: result.id,
+            backdropPath: result.backdropPath ?? '',
+            originalLanguage: result.originalLanguage ?? '',
+            originalTitle: result.originalTitle ?? '',
+            overview: result.overview ?? '',
+            posterPath: result.posterPath ?? '',
+            title: result.title ?? '',
+            video: result.video,
+            voteAverage: result.voteAverage,
+            voteCount: result.voteCount,
+            popularity: result.popularity)
+    ];
+    return results;
+  }
+
+  @override
+  Future<List<TrailerEntity>> getTrailer(String id) async {
+    final data = await dataSource.getTrailer(id);
+    late List<TrailerEntity> results;
+    results = [
+      for (final result in data.results)
+        TrailerEntity(id: result.id, title: result.name)
     ];
     return results;
   }

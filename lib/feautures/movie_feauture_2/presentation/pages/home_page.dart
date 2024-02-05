@@ -77,7 +77,7 @@ class HomePage extends ConsumerWidget {
                             ),
                             SizedBox(
                                 height: 120,
-                                child: GenereListWidget(data: value.genre)),
+                                child: GenereListWidget(data: value.movies)),
                             SizedBox(
                               height: theme.spaces.space_400,
                             ),
@@ -145,7 +145,7 @@ class HomePage extends ConsumerWidget {
                             SizedBox(
                               height: theme.spaces.space_100,
                             ),
-                            ListViewWidget(data: value.nowPlaying),
+                            ListViewWidget(data: value.actionMovies),
                             SizedBox(
                               height: theme.spaces.space_200,
                             ),

@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'login_constants.g.dart';
 
 class LoginConstants {
-  final appName = 'Movie Box';
+  final appName = 'Moviepedia';
   final userNameText = 'Enter email';
   final passwordText = 'Enter Password';
   final loginText = 'Login';

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/favourite_page.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/home_page.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/tvhomescreen_page.dart';
 
 class BottomWidget extends StatelessWidget {
   const BottomWidget({super.key});
@@ -26,9 +27,14 @@ class BottomWidget extends StatelessWidget {
                   },
                   icon: const Icon(Icons.movie)),
               label: 'Movies'),
-          const BottomNavigationBarItem(
-              icon: Icon(
-                Icons.tv,
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {
+                  // context.push(TvHomePage.routePath);
+                },
+                icon: Icon(
+                  Icons.tv,
+                ),
               ),
               label: 'TV shows'),
           BottomNavigationBarItem(

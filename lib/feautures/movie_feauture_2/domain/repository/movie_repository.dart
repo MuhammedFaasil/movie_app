@@ -1,5 +1,6 @@
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/genre_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/trailer_entity.dart';
 
 abstract class MovieApiRepository {
   Future<List<MovieEntity>> fetchMovies();
@@ -8,4 +9,6 @@ abstract class MovieApiRepository {
   Future<List<GenreEntity>> genreApi();
   Future<List<MovieEntity>> getPopularMovie();
   Future<List<MovieEntity>> searchMovie(String movieName);
+  Future<List<MovieEntity>> getTv();
+  Future<List<TrailerEntity>> getTrailer(String id);
 }

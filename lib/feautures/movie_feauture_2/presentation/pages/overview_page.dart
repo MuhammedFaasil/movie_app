@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
@@ -32,15 +34,23 @@ class OverViewPage extends HookConsumerWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  height: MediaQuery.sizeOf(context).height / 1.5,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              ApiConstants.imagePath + entity.posterPath),
-                          fit: BoxFit.cover)),
-                ),
+                Builder(builder: (context) {
+                  final posterPathFile = File(entity.posterPath);
+                  late final ImageProvider image;
+                  if (posterPathFile.existsSync()) {
+                    image = FileImage(posterPathFile);
+                  } else {
+                    image = NetworkImage(
+                        ApiConstants.imagePath + entity.posterPath);
+                  }
+                  return Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    height: MediaQuery.sizeOf(context).height / 1.5,
+                    decoration: BoxDecoration(
+                        image:
+                            DecorationImage(image: image, fit: BoxFit.cover)),
+                  );
+                }),
                 Positioned(
                     top: 40,
                     left: 10,
@@ -125,7 +135,11 @@ class OverViewPage extends HookConsumerWidget {
                 WatchButtonWidget(
                   icon: Icons.play_circle_outline_outlined,
                   txt: HomeConstants.watchText,
-                  function: () {},
+                  function: () {
+                    ref
+                        .read(movieApiProvider.notifier)
+                        .getTrailer(entity.id.toString());
+                  },
                 ),
                 WatchButtonWidget(
                   icon: Icons.add_circle_outline,

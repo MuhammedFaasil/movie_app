@@ -3,6 +3,7 @@ import 'package:movie_app_with_clean/core/constants/movieapi/api_constants.dart'
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/datasource/movie_datasource.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/model/genre_model.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/model/movie_model.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/data/model/trailer_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'movie_datasource_impl.g.dart';
@@ -12,6 +13,7 @@ class ApiDatasourceImpl implements ApiServicesDataSource {
   final nowPlying = ApiConstants.nowPlaying;
   final action = ApiConstants.actionUrl;
   final token = ApiConstants.token;
+  final trailer = ApiConstants.trailerLink;
   final dio = Dio();
   @override
   Future<MovieModel> fetchMovies() async {
@@ -55,6 +57,20 @@ class ApiDatasourceImpl implements ApiServicesDataSource {
     final Response response = await dio
         .get(ApiConstants.searchUrl, queryParameters: {'query': movieName});
     return MovieModel.fromJson(response.data);
+  }
+
+  @override
+  Future<MovieModel> getTv() async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final Response response = await dio.get(ApiConstants.tvShows);
+    return MovieModel.fromJson(response.data);
+  }
+
+  @override
+  Future<TrailerModel> getTrailer(String movieId) async {
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final Response response = await dio.get('$trailer/$movieId/videos');
+    return TrailerModel.fromJson(response.data);
   }
 }
 

@@ -1,8 +1,8 @@
 class PhoneLoginConstants {
-  static final buttonText = 'Send Otp';
-  static final fieldText = 'Enter Number';
-  static final backText = 'Back to';
-  static final logText = 'Login';
-  static final otpText = 'Enter Otp';
-  static final otpButtonT = 'confirm';
+  static const buttonText = 'Send Otp';
+  static const fieldText = 'Enter Number';
+  static const backText = 'Back to';
+  static const logText = 'Login';
+  static const otpText = 'Enter Otp';
+  static const otpButtonT = 'confirm';
 }

@@ -40,7 +40,7 @@ class ActionMoviesPage extends ConsumerWidget {
                   SizedBox(
                     height: theme.spaces.space_200,
                   ),
-                  ActionGridWidget(data: value.actionMovies)
+                  ActionGridWidget(data: value.movies)
                 ],
               ),
             ),

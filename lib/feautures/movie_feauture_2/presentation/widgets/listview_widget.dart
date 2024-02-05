@@ -3,10 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:movie_app_with_clean/core/theme/app_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/genre_entity.dart';
+import 'package:movie_app_with_clean/feautures/movie_feauture_2/domain/entity/movie_api_entity.dart';
 import 'package:movie_app_with_clean/feautures/movie_feauture_2/presentation/pages/action_movie_page.dart';
 
 class GenereListWidget extends StatelessWidget {
-  final List<GenreEntity> data;
+  final List<MovieEntity> data;
   final List images = [
     'asset/image/John-Wick-Chapter-2-ilm-Review-BTG-Lifestyle.jpg',
     'asset/image/adventure.jpeg',
@@ -62,7 +63,7 @@ class GenereListWidget extends StatelessWidget {
                         color: theme.colors.fieldText),
                   ),
                   Text(
-                    data[index].name,
+                    data[index].title,
                     style: GoogleFonts.mohave(color: theme.colors.text),
                   ),
                 ],

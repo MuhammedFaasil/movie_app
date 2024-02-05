@@ -1,0 +1,294 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:5880950724395088446",
+      "lastPropertyId": "12:8229362386693096324",
+      "name": "ObjectBoxEntity",
+      "properties": [
+        {
+          "id": "1:607264587512028432",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6370280891284861953",
+          "name": "movieId",
+          "type": 6
+        },
+        {
+          "id": "3:6592349652419192686",
+          "name": "backdropPath",
+          "type": 9
+        },
+        {
+          "id": "4:8930083991890392354",
+          "name": "originalLanguage",
+          "type": 9
+        },
+        {
+          "id": "5:4408867549201235911",
+          "name": "originalTitle",
+          "type": 9
+        },
+        {
+          "id": "6:2428977300189900507",
+          "name": "overview",
+          "type": 9
+        },
+        {
+          "id": "7:5147026702347688433",
+          "name": "posterPath",
+          "type": 9
+        },
+        {
+          "id": "8:3383914011876715328",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "9:2152149912581454000",
+          "name": "video",
+          "type": 1
+        },
+        {
+          "id": "10:400108062089064272",
+          "name": "voteAverage",
+          "type": 8
+        },
+        {
+          "id": "11:7535576146854692616",
+          "name": "voteCount",
+          "type": 6
+        },
+        {
+          "id": "12:8229362386693096324",
+          "name": "popularity",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2003560220974145273",
+      "lastPropertyId": "12:1732064070285714574",
+      "name": "TopRatedBoxEntity",
+      "properties": [
+        {
+          "id": "1:3906819784209635309",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6184762203537008092",
+          "name": "movieId",
+          "type": 6
+        },
+        {
+          "id": "3:832950423559694286",
+          "name": "backdropPath",
+          "type": 9
+        },
+        {
+          "id": "4:5029234991149023435",
+          "name": "originalLanguage",
+          "type": 9
+        },
+        {
+          "id": "5:7041714543290958193",
+          "name": "originalTitle",
+          "type": 9
+        },
+        {
+          "id": "6:466802085100669384",
+          "name": "overview",
+          "type": 9
+        },
+        {
+          "id": "7:772756343657968050",
+          "name": "posterPath",
+          "type": 9
+        },
+        {
+          "id": "8:9065554022454210520",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "9:6462673968015649649",
+          "name": "video",
+          "type": 1
+        },
+        {
+          "id": "10:7281889884724702137",
+          "name": "voteAverage",
+          "type": 8
+        },
+        {
+          "id": "11:211872983574449957",
+          "name": "voteCount",
+          "type": 6
+        },
+        {
+          "id": "12:1732064070285714574",
+          "name": "popularity",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3181599258599039967",
+      "lastPropertyId": "12:1041982601057222323",
+      "name": "ActionBoxEntity",
+      "properties": [
+        {
+          "id": "1:1618181737506393386",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7108884659863771023",
+          "name": "movieId",
+          "type": 6
+        },
+        {
+          "id": "3:4413389378182466115",
+          "name": "backdropPath",
+          "type": 9
+        },
+        {
+          "id": "4:7151384479354458486",
+          "name": "originalLanguage",
+          "type": 9
+        },
+        {
+          "id": "5:2550269321607764558",
+          "name": "originalTitle",
+          "type": 9
+        },
+        {
+          "id": "6:6790730348863772415",
+          "name": "overview",
+          "type": 9
+        },
+        {
+          "id": "7:190177788137616395",
+          "name": "posterPath",
+          "type": 9
+        },
+        {
+          "id": "8:3093538167507245868",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "9:3780929255170531719",
+          "name": "video",
+          "type": 1
+        },
+        {
+          "id": "10:6000395422601909756",
+          "name": "voteAverage",
+          "type": 8
+        },
+        {
+          "id": "11:8425080917303744112",
+          "name": "voteCount",
+          "type": 6
+        },
+        {
+          "id": "12:1041982601057222323",
+          "name": "popularity",
+          "type": 8
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:261719416401125031",
+      "lastPropertyId": "12:7138255949758530956",
+      "name": "PopularBoxEntity",
+      "properties": [
+        {
+          "id": "1:7981817991686492839",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7179975347261134019",
+          "name": "movieId",
+          "type": 6
+        },
+        {
+          "id": "3:4784930406723348958",
+          "name": "backdropPath",
+          "type": 9
+        },
+        {
+          "id": "4:8119423486263027916",
+          "name": "originalLanguage",
+          "type": 9
+        },
+        {
+          "id": "5:7704434430403036865",
+          "name": "originalTitle",
+          "type": 9
+        },
+        {
+          "id": "6:394851343518574073",
+          "name": "overview",
+          "type": 9
+        },
+        {
+          "id": "7:6127559287919078927",
+          "name": "posterPath",
+          "type": 9
+        },
+        {
+          "id": "8:5819754744603501766",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "9:7731857624797098654",
+          "name": "video",
+          "type": 1
+        },
+        {
+          "id": "10:9101002148755948041",
+          "name": "voteAverage",
+          "type": 8
+        },
+        {
+          "id": "11:8789496631988661203",
+          "name": "voteCount",
+          "type": 6
+        },
+        {
+          "id": "12:7138255949758530956",
+          "name": "popularity",
+          "type": 8
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:261719416401125031",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}
